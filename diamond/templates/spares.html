@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/images/diamond_logo.jpg">
+
+    <title>Diamond stock app</title>
+
+
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/jumbotron_narrow.css" rel="stylesheet">
+    <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+<script>
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script> 
+<style>
+
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+
+    text-align: center;
+
+}
+
+
+</style> 
+
+</head>
+
+<body>
+
+<script>
+var timeout;
+window.onload= document.onmousemove= document.onkeypress= function(){
+    clearTimeout(timeout);
+    timeout=setTimeout(function()
+        {location= '/logout'},300000);
+}  
+</script>   
+
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation">
+                        <a href="/welcome">Home</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="/showSpecials">Diamond specials</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="/logout">Log out</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+<input type="button" onclick="printDiv('printableArea')" value="Print me" />
+
+    <div id="printableArea"> 
+
+
+            <font size="3" face="Arial Black" >
+            <table width="600" border="1" cellpadding="20" cellspacing="20">
+
+            <h3> <img src="../static/images/diamond_logo.jpg" align="middle" style="width:240px;height:128px;border:0;"></h3>
+
+            <font size="3" face="Arial Black" >
+            <table>
+            
+            <tr>
+              <thead>
+
+                <th id = "Processing Code">Processing Code</th>
+                <th>Description</th>
+                <th>Item</th>
+                <th>Group</th>
+                <th>Catalogue Code</th>
+                <th>Price</th>
+            </thead>
+            </tr>
+            <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for d in row %}
+                        <td height="40">{{ d }}</td>  <!-- ToDo: Resize this page, need it centered slightly to the left -->
+
+                    {% endfor %}
+                 </tr>
+            {% endfor %}           
+            </tbody>
+            </table>
+
+        <footer class="footer">
+            <p>&copy; Diamond Sales 2017</p>
+        </footer>
+        </font>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!--            <div class="scrollingtable">
+              <div>
+                <div>
+                    <font size="3" face="Arial Black" >
+                        <table width="600" border="1" cellpadding="20" cellspacing="20">
+                            <thead>
+                            <tr><th>Processing Code</th><th>Description</th><th>Item</th><th>Group</th><th>Catalogue Code</th><th>Price</th><th></tr>
+                            </thead>
+<tbody>
+{% for row in data %}
+    <tr>
+
+    {% for d in row %}
+        <td height="30">{{ d }}</td>
+
+    {% endfor %}
+    </tr>
+{% endfor %}
+</tbody>
+</font>	
+</table>
+            </div> -->
+       
+
+
+

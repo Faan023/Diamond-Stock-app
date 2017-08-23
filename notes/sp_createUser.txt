@@ -1,0 +1,48 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createUser`(
+    IN p_name VARCHAR(125),
+    IN p_dem_code VARCHAR(11),
+    IN p_cell_no VARCHAR(10),
+    IN p_id_no VARCHAR(13),
+    IN p_password VARCHAR(155)
+    
+)
+BEGIN
+
+
+if ( select exists (select 1 from diamond.tbl_users where dem_code = p_dem_code) ) THEN
+     
+        select 'Demonstrator code allready registered !';
+        
+ELSEIF ( select exists (select 1 from diamond.tbl_users where ID_no = p_id_no) ) THEN
+
+		select 'This ID number has allready been registered !';
+        
+     
+ELSEIF  (select count(*)   from invoices2016 where SF_Code = p_dem_code and  DATE(Processed_Date) >= DATE(NOW() - INTERVAL 6 MONTH)  ) = 0 THEN
+		select 'No record of demonstrator code found in the last 6 months!';
+
+ELSE
+     
+        insert into diamond.tbl_users
+        (
+            user_name,
+            dem_code,
+            cell_no,
+            ID_no,
+            user_password
+            
+            
+            
+        )
+        values
+        (
+            p_name,
+            p_dem_code,
+            p_cell_no,
+            p_id_no,
+            p_password
+            
+        );
+     
+    END IF;
+END

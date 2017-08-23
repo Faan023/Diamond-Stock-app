@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/images/diamond_logo.jpg">
+
+    <title>Diamond stock app</title>
+
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/jumbotron_narrow.css" rel="stylesheet">
+    <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="/showContact">Back</a></li> 
+
+                </ul>
+            </nav>
+            <h3> <img src="../static/images/diamond_logo.jpg" align="middle" style="width:240px;height:128px;border:0;"></h3>
+        </div>
+
+        <div class="jumbotron">
+            
+
+            <form class="form-signin">
+
+                <label for="inputname" class="sr-only">Name and Surname</label>
+                <input type="name" name="inputname" id="inputname"  class="form-control" placeholder="Name and Surname" required autofocus>
+
+                <label for="inputId" class="sr-only">Id number</label>
+                <input type="text" name="inputId" id="inputId" class="form-control" placeholder="ID Number" required>
+
+                <label for="inputTelNo" class="sr-only">Telephone number</label>
+                <input type="text" name="inputTelNo" id="inputTelNo" class="form-control" placeholder="Telephone Number" required>
+
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email adress" >
+
+                <label for="inputArea" class="sr-only">Area</label>
+                <input type="text" name="inputArea" id="inputArea" class="form-control" placeholder="Area of work or home" required>
+
+                <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            </form>
+ 
+ 
+</div> 
+
+
+
+        <footer class="footer">
+            <p>&copy; Diamond Sales 2017</p>
+        </footer>
+
+    </div>
+</body>
+</html>
+<script src="../static/scripts/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        $('#btnSignUp').click(function () {
+
+            $.ajax({
+                url: '/join',
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function (response) {
+                    alert(response);
+                    console.log(response);
+                },
+                error: function (error) {
+                    alert(error);
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>

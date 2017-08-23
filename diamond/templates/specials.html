@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/images/diamond_logo.jpg">
+
+    <title>Diamond stock app</title>
+
+
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/jumbotron_narrow.css" rel="stylesheet">
+    <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+   
+
+</head>
+
+<body>
+
+<script>
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script> 
+
+<script>
+var timeout;
+window.onload= document.onmousemove= document.onkeypress= function(){
+    clearTimeout(timeout);
+    timeout=setTimeout(function()
+        {location= '/logout'},300000);
+}  
+
+</script>
+
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation">
+                        <a href="/welcome">Home</a>
+                    </li>
+                    
+                    <li role="presentation">
+                        <a href="/showSpares">Spare part list</a>
+                     </li>
+                    <li role="presentation">
+                        <a href="/logout">Log out</a>
+                    </li>
+
+                </ul>
+            </nav>
+<input type="button" onclick="printDiv('printableArea')" value="Print me" />
+<div id="printableArea"> 
+
+            <h3> <img src="../static/images/diamond_logo.jpg" align="middle" style="width:240px;height:128px;border:0;"></h3>
+
+
+            <font size="3" face="Arial Black" >
+            <table width="600" border="1" cellpadding="20" cellspacing="20">
+
+            <tr><th>Processing Code</th><th>Description</th><th>Price</th><th>Quantity</th></tr>
+    {% for row in data %}
+
+        <tr>
+        {% for d in row %}
+            <td height="30">{{ d }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+<p> Please note that the list will be updated once a  </p>
+<p>day at 17:00, some items may be sold out between updates </p>	
+
+</table>
+
+
+
+
+<p> The quantity represents the combined stock available in all in all zones. </p>
+<p> Stock available in all zones </p>
+
+</font>
+</div>
+        <footer class="footer">
+            <p>&copy; Diamond Sales 2017</p>
+        </footer>
+
+    </div>
+
+</ul>
+</nav>
+</div>
+</div>
+</body>
+</html>

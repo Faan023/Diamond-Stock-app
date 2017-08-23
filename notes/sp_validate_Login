@@ -1,0 +1,18 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_validateLogin`(
+	IN p_demCode VARCHAR(11),
+    IN p_password VARCHAR(125)
+    
+	
+
+
+)
+BEGIN
+IF  (select count(*)   from invoices2016 where SF_Code = p_demCode and  DATE(Processed_Date) >= DATE(NOW() - INTERVAL 6 MONTH)  ) = 0 THEN
+
+		select 'No record of demonstrator code found in the last 6 months!';
+
+ELSE
+	(select * from tbl_users where dem_code = p_demCode and user_password = p_password);
+        
+END IF;
+END

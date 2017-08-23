@@ -1,0 +1,22 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_validate_user`(
+    IN p_dem_code VARCHAR(11),
+    IN p_cell_no VARCHAR(10),
+    IN p_id_no VARCHAR(13),
+    IN p_password VARCHAR(155)
+
+    
+)
+BEGIN
+
+
+if ( select exists (select count(*) from diamond.tbl_users where dem_code = p_dem_code and cell_no = p_cell_no and ID_no = p_id_no) ) = 0 THEN
+
+		select 'Record sets do not match any registered user!';
+        
+ELSE
+         
+        UPDATE diamond.tbl_users set user_password = p_password  ;
+
+     
+    END IF;
+END
